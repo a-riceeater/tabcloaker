@@ -1,8 +1,8 @@
 // TABCLOAKER JS INJECTION VERSION
-// ORIGINAL VERSION IS GOOGLE EXTENSION
 // MADE BY GHOSTY/DARTHVADER1925
+// ALL IMAGES GO TO THEIR RESPECTIVE OWNERS
 
-var old_title = document.title;
+const old_title = document.title;
 var old_icon;
 var favcions = [];
 favcions["Google"] = "assets/google-favicon.png"
@@ -59,15 +59,21 @@ function setPreset(e) {
         link.href = favcions[e.target.innerHTML]
         document.head.appendChild(link)
     } else {
+        old_icon = link.href;
         link.href = favcions[e.target.innerHTML]
     }
     document.title = e.target.getAttribute("data");
+    alert("Settings applied!")
+    menu.style.display = "none"
+    shade.style.display = "none"
 }
 
 function tabcloaker_apply() {
     try {
         if (document.getElementById("tabcloakertitle").value.replaceAll(" ", "") != "" && document.getElementById("tabcloakerfavicon").value.replaceAll(" ", "") != "") {
-            var link = document.querySelector("link[rel~='icon']");
+            var link = document.querySelector("link[rel~='icon']") || document.querySelector("link[rel~='shortcut icon']");
+            old_icon = link.href;
+            console.log(old_icon)
             if (!link) {
                 tabcloaker_set(null, true);
             } else {
@@ -76,7 +82,9 @@ function tabcloaker_apply() {
         } else {
             if (document.getElementById("tabcloakerfavicon").value.replaceAll(" ", "") == "") {
                 var c = confirm("Website icon will not change. Ok?")
-                if (c) tabcloaker_set(document.querySelector("link"), false);
+                var l = document.querySelector("link[rel~='icon']") || document.querySelector("link[rel~='shortcut icon']");
+                old_icon = l.href;
+                if (c) { tabcloaker_set(l, false); }
                 return
             }
             alert("Inputs must be filled!")
@@ -89,13 +97,16 @@ function tabcloaker_apply() {
 function tabcloaker_set(link, changeIcon) {
     document.title = document.getElementById("tabcloakertitle").value;
     if (!link) {
-        link = document.createElement('link');    
+        link = document.createElement('link');
         link.rel = 'icon';
-        document.head.appendChild(link);    
+        document.head.appendChild(link);
         if (changeIcon) link.href = document.querySelector("#tabcloakerfavicon").value;
 
     }
     if (changeIcon) old_icon = link.href;
+    alert("Settings applied!")
+    menu.style.display = "none"
+    shade.style.display = "none"
 }
 
 setTimeout(() => {
@@ -104,7 +115,6 @@ setTimeout(() => {
 }, 500)
 
 function tabcloaker_reset() {
-    if (old_icon == null) return
     document.title = old_title;
     var link = document.querySelector("link[rel~='icon']");
     if (!link) {
@@ -113,6 +123,9 @@ function tabcloaker_reset() {
         document.getElementsByTagName('head')[0].appendChild(link);
     }
     link.href = old_icon;
+    alert("Settings applied!")
+    menu.style.display = "none"
+    shade.style.display = "none"
 }
 
 document.addEventListener("keydown", function (e) {
