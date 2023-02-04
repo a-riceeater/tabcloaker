@@ -4,6 +4,11 @@
 
 var old_title = document.title;
 var old_icon;
+var favcions = [];
+favcions["Google"] = "assets/google-favicon.png"
+favcions["Google Classroom"] = "assets/google-classroom-favicon.png"
+favcions["Gmail"] = "assets/gmail-favicon.ico"
+favcions["Google Docs"] = "assets/google-docs-favicon.ico"
 
 console.warn("Tabcloaker initializing...")
 const styles = document.createElement("link")
@@ -17,15 +22,20 @@ const getSiteConfig = function () {
 
 const menu = document.createElement("div");
 menu.setAttribute("id", "tabclaoker-gui-main")
-menu.innerHTML = `
+menu.innerHTML = `  
 <br><br><br>
 <h1>TabCloaker</h1>
 <input id="tabcloakertitle" placeholder="Website title" class="tabcloaker-input">
 <br><br>
 <input id="tabcloakerfavicon" placeholder="Favicon (website icon, img link)" class="tabcloaker-input">
-<br><br>
+<h1>Presets</h1>
+<ul style="text-align: left;">
+  <li class="tabcloaker-presetOption" data="Google">Google</li>
+  <li class="tabcloaker-presetOption" data="Classes">Google Classroom</li>
+  <li class="tabcloaker-presetOption" data="Inbox">Gmail</li>
+  <li class="tabcloaker-presetOption" data="Google Docs">Google Docs</li>
+</ul>
 <button id="tabcloaker-apply-btn" class="tabcloaker-main-btn">Apply</button>
-<br><br>
 <button id="tabcloaker-reset-btn" class="tabcloaker-main-btn">Reset</button>
 `
 menu.style.display = "none";
@@ -35,6 +45,24 @@ const shade = document.createElement("div")
 shade.setAttribute("id", "tabcloaker-shade-main")
 shade.style.display = "none"
 document.body.appendChild(shade);
+
+document.querySelectorAll(".tabcloaker-presetOption").forEach(ele => {
+    ele.addEventListener("click", setPreset);
+})
+
+function setPreset(e) {
+    console.log(e.target.innerHTML)
+    var link = document.querySelector("link[rel~='icon']") || document.querySelector("link[rel~='shortcut icon']");
+    if (!link) {
+        link = document.createElement("link")
+        link.rel = "icon"
+        link.href = favcions[e.target.innerHTML]
+        document.head.appendChild(link)
+    } else {
+        link.href = favcions[e.target.innerHTML]
+    }
+    document.title = e.target.getAttribute("data");
+}
 
 function tabcloaker_apply() {
     try {
