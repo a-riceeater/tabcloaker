@@ -11,8 +11,8 @@ styles.setAttribute("rel", "stylesheet");
 styles.setAttribute("href", "cdn/tabcloaker-styles.css")
 document.head.appendChild(styles)
 
-const getSiteConfig = function() {
-  localStorage.getItem("tabcloaker.site.config")
+const getSiteConfig = function () {
+    localStorage.getItem("tabcloaker.site.config")
 }
 
 const menu = document.createElement("div");
@@ -37,54 +37,68 @@ shade.style.display = "none"
 document.body.appendChild(shade);
 
 function tabcloaker_apply() {
-  try {
-    if (document.getElementById("tabcloakertitle").value.replaceAll(" ", "") != "" && document.getElementById("tabcloakerfavicon").value.replaceAll(" ", "") != "") {
-      document.title = document.getElementById("tabcloakertitle").value;
-      var link = document.querySelector("link[rel~='icon']");
-      if (!link) {
-        link = document.createElement('link');
-        link.rel = 'icon';
-        document.getElementsByTagName('head')[0].appendChild(link);
-      }
-      old_icon = link.href;
-      link.href = document.getElementById("tabcloakerfavicon").value;
-    } else {
-      alert("Inputs must be filled!")
+    try {
+        if (document.getElementById("tabcloakertitle").value.replaceAll(" ", "") != "" && document.getElementById("tabcloakerfavicon").value.replaceAll(" ", "") != "") {
+            var link = document.querySelector("link[rel~='icon']");
+            if (!link) {
+                tabcloaker_set(null, true);
+            } else {
+                tabcloaker_set(link, true);
+            }
+        } else {
+            if (document.getElementById("tabcloakerfavicon").value.replaceAll(" ", "") == "") {
+                var c = confirm("Website icon will not change. Ok?")
+                if (c) tabcloaker_set(document.querySelector("link"), false);
+                return
+            }
+            alert("Inputs must be filled!")
+        }
+    } catch (err) {
+        console.error(err)
     }
-  } catch (err) {
-    alert(err)
-  }
+}
+
+function tabcloaker_set(link, changeIcon) {
+    document.title = document.getElementById("tabcloakertitle").value;
+    if (!link) {
+        link = document.createElement('link');    
+        link.rel = 'icon';
+        document.head.appendChild(link);    
+        if (changeIcon) link.href = document.querySelector("#tabcloakerfavicon").value;
+
+    }
+    if (changeIcon) old_icon = link.href;
 }
 
 setTimeout(() => {
     document.querySelector("#tabcloaker-apply-btn").addEventListener("click", tabcloaker_apply)
     document.querySelector("#tabcloaker-reset-btn").addEventListener("click", tabcloaker_reset)
-}, 500) 
+}, 500)
 
 function tabcloaker_reset() {
-  if (old_icon == null) return
-  document.title = old_title;
-  var link = document.querySelector("link[rel~='icon']");
-  if (!link) {
-    link = document.createElement('link');
-    link.rel = 'icon';
-    document.getElementsByTagName('head')[0].appendChild(link);
-  }
-  link.href = old_icon;
+    if (old_icon == null) return
+    document.title = old_title;
+    var link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    }
+    link.href = old_icon;
 }
 
-document.addEventListener("keydown", function(e) {
-  const keycode = e.keyCode;
-  if (keycode == 220) {
-    // open gui menu
-    if (document.querySelector("#tabclaoker-gui-main").style.display == "none") {
-      menu.style.display = "block";
-      shade.style.display = "block";
-    } else {
-      menu.style.display = "none"
-      shade.style.display = "none"
+document.addEventListener("keydown", function (e) {
+    const keycode = e.keyCode;
+    if (keycode == 220) {
+        // open gui menu
+        if (document.querySelector("#tabclaoker-gui-main").style.display == "none") {
+            menu.style.display = "block";
+            shade.style.display = "block";
+        } else {
+            menu.style.display = "none"
+            shade.style.display = "none"
+        }
     }
-  }
 })
 
 console.log("Tabcloaker initialized.")
