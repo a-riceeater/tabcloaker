@@ -5,10 +5,10 @@
 const old_title = document.title;
 var old_icon;
 var favcions = [];
-favcions["Google"] = "assets/google-favicon.png"
-favcions["Google Classroom"] = "assets/google-classroom-favicon.png"
-favcions["Gmail"] = "assets/gmail-favicon.ico"
-favcions["Google Docs"] = "assets/google-docs-favicon.ico"
+favcions["Google"] = "https://ghwosty.github.io/tabcloaker/assets/google-favicon.png"
+favcions["Google Classroom"] = "https://ghwosty.github.io/tabcloaker/assets/google-classroom-favicon.png"
+favcions["Gmail"] = "https://ghwosty.github.io/tabcloaker/assets/gmail-favicon.ico"
+favcions["Google Docs"] = "https://ghwosty.github.io/tabcloaker/assets/google-docs-favicon.ico"
 
 console.warn("Tabcloaker initializing...")
 const styles = document.createElement("link")
