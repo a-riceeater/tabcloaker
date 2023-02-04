@@ -13,7 +13,7 @@ favcions["Google Docs"] = "assets/google-docs-favicon.ico"
 console.warn("Tabcloaker initializing...")
 const styles = document.createElement("link")
 styles.setAttribute("rel", "stylesheet");
-styles.setAttribute("href", "cdn/tabcloaker-styles.css")
+styles.setAttribute("href", "https://raw.githubusercontent.com/ghwosty/tabcloaker/main/cdn/tabcloaker-styles.css")
 document.head.appendChild(styles)
 
 const getSiteConfig = function () {
