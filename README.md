@@ -7,7 +7,8 @@ A easy to use JS injection script to cloak tabs.
 ## Bookmark Injection
 1. Create a new bookmark (from any site)
 2. Edit the bookmark
-3. Change the URL to the following code.  
+3. Change the URL to the following code.
+<br>
 `javascript: const script = document.createElement("script"); script.src = "https://ghwosty.github.io/tabcloaker/cdn/tabcloaker.js"; void 0;`
 
 ### Usage
