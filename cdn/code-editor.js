@@ -1,3 +1,4 @@
+try {
 // Stylesheet
 
 const styles = document.createElement("link");
@@ -25,4 +26,7 @@ setTimeout(() => {
 function e() {
   var output = window.open();
   output.document.write(document.querySelector("textarea").value);
+}
+} catch (err) {
+alert(err)
 }
