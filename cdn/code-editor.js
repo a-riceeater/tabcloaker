@@ -8,7 +8,7 @@ document.head.appendChild(styles);
 
 //
 
-document.innerHTML = `
+document.body.innerHTML = `
 <body>
 <h1>COde Editor</h1>
 
