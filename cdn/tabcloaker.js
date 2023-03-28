@@ -17,7 +17,7 @@ styles.setAttribute("href", "https://ghwosty.github.io/tabcloaker/cdn/tabcloaker
 document.head.appendChild(styles)
 
 const getSiteConfig = function () {
-    localStorage.getItem("tabcloaker.site.config")
+    return localStorage.getItem("tabcloaker.site.config")
 }
 
 const menu = document.createElement("div");
