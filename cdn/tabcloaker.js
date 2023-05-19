@@ -5,15 +5,15 @@
 const old_title = document.title;
 var old_icon;
 var favcions = [];
-favcions["Google"] = "https://ghwosty.github.io/tabcloaker/assets/google-favicon.png"
-favcions["Google Classroom"] = "https://ghwosty.github.io/tabcloaker/assets/google-classroom-favicon.png"
-favcions["Gmail"] = "https://ghwosty.github.io/tabcloaker/assets/gmail-favicon.ico"
-favcions["Google Docs"] = "https://ghwosty.github.io/tabcloaker/assets/google-docs-favicon.ico"
+favcions["Google"] = "https://a-riceeater.github.io/tabcloaker/assets/google-favicon.png"
+favcions["Google Classroom"] = "https://a-riceeater.github.io/tabcloaker/assets/google-classroom-favicon.png"
+favcions["Gmail"] = "https://a-riceeater.github.io/tabcloaker/assets/gmail-favicon.ico"
+favcions["Google Docs"] = "https://a-riceeater.github.io/tabcloaker/assets/google-docs-favicon.ico"
 
 console.warn("Tabcloaker initializing...")
 const styles = document.createElement("link")
 styles.setAttribute("rel", "stylesheet");
-styles.setAttribute("href", "https://ghwosty.github.io/tabcloaker/cdn/tabcloaker-styles.css")
+styles.setAttribute("href", "https://a-riceeater.github.io/tabcloaker/cdn/tabcloaker-styles.css")
 document.head.appendChild(styles)
 
 const getSiteConfig = function () {
